@@ -158,6 +158,10 @@ class App extends Component {
           {this.drawSquare(parseInt(this.state.ratio01), 'blue')}
           {this.drawSquare(parseInt(this.state.ratio23), 'green')}
         </View>
+        <View style={{ flex: 1, flexDirection: 'row' }} >
+          {this.drawSquare(parseInt(this.state.ratio1), 'blue')}
+          {this.drawSquare(parseInt(this.state.ratio2), 'green')}
+        </View>
       </View>
     );
   }
