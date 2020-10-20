@@ -27,24 +27,23 @@ class App extends Component {
     this.setState({ beacon: beacons });
   }
 
-  requestCameraPermission = async () => {
+  requestLocationPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: "Cool Photo App Camera Permission",
+          title: "Location Permission for Bluetooth",
           message:
-            "Cool Photo App needs access to your camera " +
-            "so you can take awesome pictures.",
+            "We need location permission to use the bluetooth ",
           buttonNeutral: "Ask Me Later",
           buttonNegative: "Cancel",
           buttonPositive: "OK"
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
+        console.log("You can use the location");
       } else {
-        console.log("Camera permission denied");
+        console.log("Location permission denied");
       }
     } catch (err) {
       console.warn(err);
@@ -58,10 +57,10 @@ class App extends Component {
     _windowHeight = Dimensions.get('window').height;
     this.setState({ windowHeight: _windowHeight, windowWidth: _windowWidth });
 
-    this.requestCameraPermission();
+    this.requestLocationPermission();
     Beacons.detectIBeacons();
     Beacons
-      .startRangingBeaconsInRegion('Estimotes', '74278bda-b644-4520-8f0c-720eaf059935') // or like  < v1.0.7: .startRangingBeaconsInRegion(identifier, uuid)
+      .startRangingBeaconsInRegion('Ibeacon', '74278bda-b644-4520-8f0c-720eaf059935') // or like  < v1.0.7: .startRangingBeaconsInRegion(identifier, uuid)
       .then(() => console.log('Beacons ranging started succesfully'))
       .catch(error => console.log(`Beacons ranging not started, error: ${error}`));
 
@@ -165,6 +164,7 @@ class App extends Component {
       </View>
     );
   }
+
 }
 
 export default App;
